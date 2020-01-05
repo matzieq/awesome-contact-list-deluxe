@@ -10,8 +10,9 @@ import {
   CLEAR_FILTER,
   CONTACT_ERROR
 } from "../types";
+import { Contact, Action } from "context/contacts/model";
 
-export default (state: any, action: any) => {
+export default (state: any, action: Action) => {
   const { type, payload } = action;
   switch (type) {
     case GET_CONTACTS:
@@ -29,7 +30,7 @@ export default (state: any, action: any) => {
     case UPDATE_CONTACT:
       return {
         ...state,
-        contacts: state.contacts.map((contact: any) =>
+        contacts: state.contacts.map((contact: Contact) =>
           contact._id === payload._id ? payload : contact
         ),
         loading: false
@@ -38,7 +39,7 @@ export default (state: any, action: any) => {
       return {
         ...state,
         contacts: state.contacts.filter(
-          (contact: any) => contact._id !== payload
+          (contact: Contact) => contact._id !== payload
         ),
         loading: false
       };
@@ -60,7 +61,7 @@ export default (state: any, action: any) => {
     case FILTER_CONTACTS:
       return {
         ...state,
-        filtered: state.contacts.filter((contact: any) => {
+        filtered: state.contacts.filter((contact: Contact) => {
           const regex = new RegExp(`${payload}`, "gi");
           return (
             contact.name.match(regex) ||

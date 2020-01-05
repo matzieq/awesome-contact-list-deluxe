@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import ContactContext from "./contactContext";
 import contactReducer from "./contactReducer";
+import { Contact, State } from "context/contacts/model";
 
 import {
   // GET_CONTACTS,
@@ -16,7 +17,7 @@ import {
 } from "../types";
 
 const ContactState = (props: any) => {
-  const initialState = {
+  const initialState: State = {
     contacts: [
       {
         _id: 1,
@@ -79,7 +80,7 @@ const ContactState = (props: any) => {
   // };
 
   // Add contact
-  const addContact = (contact: any) => {
+  const addContact = (contact: Contact) => {
     dispatch({ type: ADD_CONTACT, payload: contact });
   };
 
@@ -94,7 +95,7 @@ const ContactState = (props: any) => {
   };
 
   // Set current contact
-  const setCurrent = (contact: any) => {
+  const setCurrent = (contact: Contact) => {
     dispatch({ type: SET_CURRENT, payload: contact });
   };
 
@@ -104,7 +105,7 @@ const ContactState = (props: any) => {
   };
 
   // Update contact
-  const updateContact = (contact: any) => {
+  const updateContact = (contact: Contact) => {
     dispatch({ type: UPDATE_CONTACT, payload: contact });
   };
 
