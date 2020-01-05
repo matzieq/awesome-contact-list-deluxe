@@ -4,11 +4,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 
+import ContactState from "context/contacts/ContactState";
+
 import Navbar from "components/layout/Navbar";
 import Contacts from "components/pages/Contacts";
 import Skills from "components/pages/Skills";
 
 import "./App.css";
+import AddButton from "components/layout/AddButton";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -16,13 +19,16 @@ const App: React.FC = () => {
   });
   return (
     <Router>
-      <Navbar />
-      <div className="container">
-        <Switch>
-          <Route exact path="/contacts" component={Contacts} />
-          <Route exact path="/skills" component={Skills} />
-        </Switch>
-      </div>
+      <ContactState>
+        <Navbar />
+        <div className="container">
+          <Switch>
+            <Route exact path="/contacts" component={Contacts} />
+            <Route exact path="/skills" component={Skills} />
+          </Switch>
+          <AddButton />
+        </div>
+      </ContactState>
     </Router>
   );
 };
