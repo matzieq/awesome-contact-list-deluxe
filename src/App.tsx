@@ -12,6 +12,7 @@ import Skills from "components/pages/Skills";
 
 import "./App.css";
 import AddButton from "components/layout/AddButton";
+import AddContactModal from "components/contacts/AddContactModal";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           </Switch>
           <AddButton />
         </div>
+        <AddContactModal />
       </ContactState>
     </Router>
   );

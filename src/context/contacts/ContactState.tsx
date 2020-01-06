@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 import ContactContext from "./contactContext";
 import contactReducer from "./contactReducer";
 import { Contact, State } from "context/contacts/model";
+import uuid from "uuid";
 
 import {
   // GET_CONTACTS,
@@ -81,6 +82,7 @@ const ContactState = (props: any) => {
 
   // Add contact
   const addContact = (contact: Contact) => {
+    contact._id = uuid.v4();
     dispatch({ type: ADD_CONTACT, payload: contact });
   };
 

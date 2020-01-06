@@ -1,10 +1,10 @@
 export interface Skill {
-  _id: number;
+  _id: number | string;
   name: string;
 }
 
 export interface Contact {
-  _id: number;
+  _id: number | string;
   name: string;
   email: string;
   phone: string;

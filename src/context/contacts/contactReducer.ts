@@ -14,6 +14,7 @@ import { Contact, Action } from "context/contacts/model";
 
 export default (state: any, action: Action) => {
   const { type, payload } = action;
+
   switch (type) {
     case GET_CONTACTS:
       return {
