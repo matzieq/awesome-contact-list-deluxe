@@ -8,7 +8,8 @@ import {
   UPDATE_CONTACT,
   FILTER_CONTACTS,
   CLEAR_FILTER,
-  CONTACT_ERROR
+  CONTACT_ERROR,
+  ADD_SKILL
 } from "../types";
 import { Contact, Action } from "context/contacts/model";
 
@@ -27,6 +28,11 @@ export default (state: any, action: Action) => {
         ...state,
         contacts: [payload, ...state.contacts],
         loading: false
+      };
+    case ADD_SKILL:
+      return {
+        ...state,
+        skills: [payload, ...state.skills]
       };
     case UPDATE_CONTACT:
       return {

@@ -6,14 +6,19 @@ const Skills = () => {
   const { skills } = useContext(contactContext);
   return (
     <table>
-      <tr>
-        <th>Skills</th>
-      </tr>
-      {skills.map((skill: Skill) => (
-        <tr key={skill._id}>
-          <td>{skill.name}</td>
+      <thead>
+        <tr>
+          <th>Skills</th>
         </tr>
-      ))}
+      </thead>
+      <tbody>
+        {skills &&
+          skills.map((skill: Skill) => (
+            <tr key={skill._id}>
+              <td>{skill.name}</td>
+            </tr>
+          ))}
+      </tbody>
     </table>
   );
 };

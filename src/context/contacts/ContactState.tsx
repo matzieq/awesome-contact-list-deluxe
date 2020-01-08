@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import ContactContext from "./contactContext";
 import contactReducer from "./contactReducer";
-import { Contact, State } from "context/contacts/model";
+import { Contact, State, Skill } from "context/contacts/model";
 import uuid from "uuid";
 
 import {
@@ -13,7 +13,8 @@ import {
   CLEAR_CURRENT,
   UPDATE_CONTACT,
   FILTER_CONTACTS,
-  CLEAR_FILTER
+  CLEAR_FILTER,
+  ADD_SKILL
   // CONTACT_ERROR
 } from "../types";
 
@@ -84,6 +85,12 @@ const ContactState = (props: any) => {
   const addContact = (contact: Contact) => {
     contact._id = uuid.v4();
     dispatch({ type: ADD_CONTACT, payload: contact });
+  };
+
+  // Add skill
+  const addSkill = (skill: Skill) => {
+    skill._id = uuid.v4();
+    dispatch({ type: ADD_SKILL, payload: skill });
   };
 
   // Delete contact

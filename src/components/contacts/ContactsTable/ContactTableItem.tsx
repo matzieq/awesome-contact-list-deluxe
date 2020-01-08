@@ -18,9 +18,12 @@ const ContactTableItem = ({
       <td>{department}</td>
       <td>{dayjs(dateAdded).format("MM/DD/YYYY")}</td>
       <td>
-        {skills.map((skill: Skill) => (
-          <span style={{ display: "block" }}>{skill.name}</span>
-        ))}
+        {skills &&
+          skills.map((skill: Skill) => (
+            <span key={skill._id} style={{ display: "block" }}>
+              {skill.name}
+            </span>
+          ))}
       </td>
     </tr>
   );

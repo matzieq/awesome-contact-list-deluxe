@@ -11,9 +11,11 @@ const ContactsTable = ({ contacts }: ContacsTableProps) => {
   return (
     <table>
       <TableHeader />
-      {contacts.map((contact: Contact) => (
-        <ContactTableItem contact={contact} />
-      ))}
+      <tbody>
+        {contacts.map((contact: Contact) => (
+          <ContactTableItem key={contact._id} contact={contact} />
+        ))}
+      </tbody>
     </table>
   );
 };
