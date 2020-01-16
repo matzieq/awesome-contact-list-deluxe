@@ -141,6 +141,7 @@ const ContactState = (props: any) => {
         skills,
 
         addContact,
+        addSkill,
         deleteContact,
         setCurrent,
         clearCurrent,
