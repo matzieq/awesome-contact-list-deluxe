@@ -27,8 +27,8 @@ const ContactState = (props: any) => {
         email: "mietek@pletwa.com",
         phone: "66666",
         company: "Pletwa",
-        department: "Pletwa",
-        dateAdded: new Date(),
+        department: "Alpaga",
+        dateAdded: new Date(2019, 6, 5),
         skills: [
           { _id: 1, name: "Wałęsanie się" },
           { _id: 2, name: "Kłapanie" }
@@ -40,8 +40,8 @@ const ContactState = (props: any) => {
         email: "janek@pletwa.com",
         phone: "666667777",
         company: "Pletwa",
-        department: "Pletwa",
-        dateAdded: new Date(),
+        department: "Grzyb",
+        dateAdded: new Date(2018, 5, 10),
         skills: [
           { _id: 1, name: "Wałęsanie się" },
           { _id: 3, name: "Grzybobranie" }
@@ -52,7 +52,7 @@ const ContactState = (props: any) => {
         name: "Józek Wózek",
         email: "juzek@pletwa.com",
         phone: "66666777788",
-        company: "Pletwa",
+        company: "Blob",
         department: "Pletwa",
         dateAdded: new Date(),
         skills: [
