@@ -29,6 +29,9 @@ const AddSkillModal = () => {
             <Form>
               <Field type="text" name="name" placeholder="Name" />
               <ErrorMessage name="name" component="div" />
+              <button type="submit" className="btn">
+                Add <i className="material-icons right">add</i>
+              </button>
             </Form>
           )}
         </Formik>
