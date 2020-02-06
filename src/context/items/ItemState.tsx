@@ -1,22 +1,23 @@
 import React, { useReducer } from "react";
 import ItemContext from "./itemContext";
 import itemReducer from "./itemReducer";
-import { Item, State, Skill } from "context/items/model";
+import { Item, State, Tag } from "context/items/model";
 import uuid from "uuid";
 
 import {
-  GET_CONTACTS,
-  CLEAR_CONTACTS,
-  ADD_CONTACT,
-  DELETE_CONTACT,
+  GET_ITEMS,
+  CLEAR_ITEMS,
+  ADD_ITEM,
+  DELETE_ITEM,
+  DELETE_TAG,
   SET_CURRENT,
   CLEAR_CURRENT,
-  UPDATE_CONTACT,
-  FILTER_CONTACTS,
+  UPDATE_ITEM,
+  FILTER_ITEMS,
   CLEAR_FILTER,
   ADD_TAG,
   GET_TAGS
-  // CONTACT_ERROR
+  // ITEM_ERROR
 } from "../types";
 
 const localStorageName = "AWESOME_GAME_LIST_DATA";
@@ -39,7 +40,7 @@ const ItemState = (props: any) => {
       window.localStorage.getItem(localStorageName) == null
         ? { contactData: [], tagData: [] }
         : JSON.parse(localStorage.getItem(localStorageName) || "");
-    dispatch({ type: GET_CONTACTS, payload: data.contactData });
+    dispatch({ type: GET_ITEMS, payload: data.contactData });
   };
 
   const getTags = () => {
@@ -53,23 +54,27 @@ const ItemState = (props: any) => {
   // Add item
   const addItem = (item: Item) => {
     item._id = uuid.v4();
-    dispatch({ type: ADD_CONTACT, payload: item });
+    dispatch({ type: ADD_ITEM, payload: item });
   };
 
-  // Add skill
-  const addTag = (tag: Skill) => {
+  // Add tag
+  const addTag = (tag: Tag) => {
     tag._id = uuid.v4();
     dispatch({ type: ADD_TAG, payload: tag });
   };
 
   // Delete item
   const deleteItem = (id: number) => {
-    dispatch({ type: DELETE_CONTACT, payload: id });
+    dispatch({ type: DELETE_ITEM, payload: id });
+  };
+
+  const deleteTag = (id: number) => {
+    dispatch({ type: DELETE_TAG, payload: id });
   };
 
   // Clear items
   const clearItems = () => {
-    dispatch({ type: CLEAR_CONTACTS });
+    dispatch({ type: CLEAR_ITEMS });
   };
 
   // Set current item
@@ -84,12 +89,12 @@ const ItemState = (props: any) => {
 
   // Update item
   const updateItem = (item: Item) => {
-    dispatch({ type: UPDATE_CONTACT, payload: item });
+    dispatch({ type: UPDATE_ITEM, payload: item });
   };
 
   // Filter items
   const filterItems = (filter: string) => {
-    dispatch({ type: FILTER_CONTACTS, payload: filter });
+    dispatch({ type: FILTER_ITEMS, payload: filter });
   };
 
   // Clear filter
@@ -114,6 +119,7 @@ const ItemState = (props: any) => {
         addItem,
         addTag,
         deleteItem,
+        deleteTag,
         setCurrent,
         clearCurrent,
         updateItem,

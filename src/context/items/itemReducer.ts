@@ -1,18 +1,19 @@
 import {
-  GET_CONTACTS,
-  CLEAR_CONTACTS,
-  ADD_CONTACT,
-  DELETE_CONTACT,
+  GET_ITEMS,
+  CLEAR_ITEMS,
+  ADD_ITEM,
+  DELETE_ITEM,
+  DELETE_TAG,
   SET_CURRENT,
   CLEAR_CURRENT,
-  UPDATE_CONTACT,
-  FILTER_CONTACTS,
+  UPDATE_ITEM,
+  FILTER_ITEMS,
   CLEAR_FILTER,
-  CONTACT_ERROR,
+  ITEM_ERROR,
   ADD_TAG,
   GET_TAGS
 } from "../types";
-import { Item, Action } from "context/items/model";
+import { Item, Action, Tag } from "context/items/model";
 
 const localStorageName = "AWESOME_GAME_LIST_DATA";
 
@@ -20,7 +21,7 @@ export default (state: any, action: Action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_CONTACTS:
+    case GET_ITEMS:
       return {
         ...state,
         items: payload,
@@ -32,7 +33,7 @@ export default (state: any, action: Action) => {
         tags: payload,
         loading: false
       };
-    case ADD_CONTACT:
+    case ADD_ITEM:
       console.log("State items: ", state.items);
       localStorage.setItem(
         localStorageName,
@@ -59,7 +60,7 @@ export default (state: any, action: Action) => {
         ...state,
         tags: [payload, ...state.tags]
       };
-    case UPDATE_CONTACT:
+    case UPDATE_ITEM:
       return {
         ...state,
         items: state.items.map((item: Item) =>
@@ -67,13 +68,26 @@ export default (state: any, action: Action) => {
         ),
         loading: false
       };
-    case DELETE_CONTACT:
+    case DELETE_ITEM:
       return {
         ...state,
         items: state.items.filter((item: Item) => item._id !== payload),
         loading: false
       };
-    case CLEAR_CONTACTS:
+    case DELETE_TAG:
+      localStorage.setItem(
+        localStorageName,
+        JSON.stringify({
+          contactData: state.items,
+          tagData: state.tags.filter((tag: Tag) => tag._id !== payload)
+        })
+      );
+      return {
+        ...state,
+        tags: state.tags.filter((tag: Tag) => tag._id !== payload),
+        loading: false
+      };
+    case CLEAR_ITEMS:
       return {
         ...state,
         items: null,
@@ -82,13 +96,13 @@ export default (state: any, action: Action) => {
         current: null,
         loading: true
       };
-    case CONTACT_ERROR:
+    case ITEM_ERROR:
       return { ...state, error: payload };
     case SET_CURRENT:
       return { ...state, current: payload };
     case CLEAR_CURRENT:
       return { ...state, current: null };
-    case FILTER_CONTACTS:
+    case FILTER_ITEMS:
       return {
         ...state,
         filtered: state.items.filter((item: Item) => {

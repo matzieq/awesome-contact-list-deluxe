@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import itemContext from "context/items/itemContext";
 
 const Navbar = () => {
+  const { getItems, getTags } = useContext(itemContext);
+
+  useEffect(() => {
+    getItems();
+    getTags();
+
+    // eslint-disable-next-line
+  }, []);
   return (
     <>
       <nav>
@@ -19,7 +28,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/skills">
+              <Link to="/tags">
                 <i className="material-icons left">build</i>Tags
               </Link>
             </li>
@@ -33,7 +42,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/skills">
+          <Link to="/tags">
             <i className="material-icons left">build</i>Tags
           </Link>
         </li>

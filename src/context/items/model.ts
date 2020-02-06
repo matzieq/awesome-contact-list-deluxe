@@ -1,4 +1,4 @@
-export interface Skill {
+export interface Tag {
   _id: number | string;
   name: string;
 }
@@ -8,7 +8,7 @@ export interface Item {
   name: string;
   platform: string;
   dateAdded: Date;
-  tags: Skill[];
+  tags: Tag[];
 }
 
 export interface Action {
@@ -22,5 +22,5 @@ export interface State {
   filtered: Item[] | null;
   error: any;
   loading: boolean;
-  tags: Skill[];
+  tags: Tag[];
 }

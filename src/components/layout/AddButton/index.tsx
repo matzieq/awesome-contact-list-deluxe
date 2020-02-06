@@ -17,7 +17,7 @@ const AddButton = () => {
         </li>
         <li>
           <a
-            href="#add-skill-modal"
+            href="#add-tag-modal"
             className="btn-floating cyan darken-2 modal-trigger"
           >
             <i className="material-icons">build</i>

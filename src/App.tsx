@@ -8,12 +8,12 @@ import ItemState from "context/items/ItemState";
 
 import Navbar from "components/layout/Navbar";
 import Items from "components/pages/Items";
-import Skills from "components/pages/Skills";
+import Tags from "components/pages/Tags";
 
 import "./App.css";
 import AddButton from "components/layout/AddButton";
 import AddItemModal from "components/items/AddItemModal";
-import AddSkillModal from "components/items/AddSkillModal";
+import AddTagModal from "components/items/AddTagModal";
 
 const localStorageName = "AWESOME_GAME_LIST_DATA";
 
@@ -28,7 +28,7 @@ const App: React.FC = () => {
         <div className="container">
           <Switch>
             <Route exact path="/games" component={Items} />
-            <Route exact path="/skills" component={Skills} />
+            <Route exact path="/tags" component={Tags} />
           </Switch>
           <AddButton />
           <button onClick={() => localStorage.removeItem(localStorageName)}>
@@ -36,7 +36,7 @@ const App: React.FC = () => {
           </button>
         </div>
         <AddItemModal />
-        <AddSkillModal />
+        <AddTagModal />
       </ItemState>
     </Router>
   );

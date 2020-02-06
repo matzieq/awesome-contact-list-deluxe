@@ -1,16 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import itemContext from "context/items/itemContext";
 import ItemsTable from "components/items/ItemsTable";
 
 const Items = () => {
-  const { items, getItems, getTags } = useContext(itemContext);
-
-  useEffect(() => {
-    getItems();
-    getTags();
-
-    // eslint-disable-next-line
-  }, []);
+  const { items } = useContext(itemContext);
 
   return <ItemsTable items={items} />;
 };

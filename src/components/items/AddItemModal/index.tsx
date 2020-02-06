@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import itemContext from "context/items/itemContext";
 import dayjs from "dayjs";
-import { Skill } from "context/items/model";
+import { Tag } from "context/items/model";
 import M from "materialize-css";
 
 const ItemSchema = Yup.object().shape({
@@ -21,7 +21,7 @@ const AddItemModal = () => {
   }, [tags]);
 
   const onSubmit = (values: any, actions: any) => {
-    const { setSubmitting } = actions;
+    const { setSubmitting, resetForm } = actions;
     setSubmitting(true);
     const dataItem = {
       ...values,
@@ -29,7 +29,7 @@ const AddItemModal = () => {
       tags: values.tags
         .filter((tag: string) => tag !== "")
         .map((tagFromForm: string) =>
-          tags.find((skill: Skill) => skill._id.toString() === tagFromForm)
+          tags.find((tag: Tag) => tag._id.toString() === tagFromForm)
         )
     };
 
@@ -39,6 +39,7 @@ const AddItemModal = () => {
     }
 
     addItem(dataItem);
+    resetForm();
     setSubmitting(false);
   };
 
@@ -54,30 +55,18 @@ const AddItemModal = () => {
           onSubmit={onSubmit}
           validationSchema={ItemSchema}
         >
-          {({ errors, touched }) => (
+          {() => (
             <Form>
-              <Field
-                type="text"
-                name="name"
-                placeholder="Name"
-                error={!!errors.name}
-                // helperText={touched.name && errors.name}
-              />
+              <Field type="text" name="name" placeholder="Name" />
               <ErrorMessage name="name" />
-              <Field
-                type="text"
-                name="platform"
-                placeholder="Platform"
-                error={!!errors.platform}
-                // helperText={touched.platform && errors.platform}
-              />
+              <Field type="text" name="platform" placeholder="Platform" />
               <ErrorMessage name="platform" />
               <div />
               <Field as="select" name="tags" multiple>
                 <option value="" disabled>
                   Choose your option
                 </option>
-                {tags.map((tag: Skill) => (
+                {tags.map((tag: Tag) => (
                   <option key={tag._id} value={tag._id}>
                     {tag.name}
                   </option>
