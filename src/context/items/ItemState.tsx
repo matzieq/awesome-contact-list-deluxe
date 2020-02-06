@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
-import ContactContext from "./contactContext";
-import contactReducer from "./contactReducer";
-import { Contact, State, Skill } from "context/contacts/model";
+import ItemContext from "./itemContext";
+import itemReducer from "./itemReducer";
+import { Item, State, Skill } from "context/items/model";
 import uuid from "uuid";
 
 import {
@@ -18,9 +18,9 @@ import {
   // CONTACT_ERROR
 } from "../types";
 
-const ContactState = (props: any) => {
+const ItemState = (props: any) => {
   const initialState: State = {
-    contacts: [
+    items: [
       {
         _id: 1,
         name: "Witek Prytek",
@@ -72,19 +72,19 @@ const ContactState = (props: any) => {
     ]
   };
 
-  const [state, dispatch] = useReducer(contactReducer, initialState);
+  const [state, dispatch] = useReducer(itemReducer, initialState);
 
-  // Get contacts
-  // const getContacts = async () => {
+  // Get items
+  // const getItems = async () => {
 
   //     dispatch({ type: GET_CONTACTS, payload: res.data });
 
   // };
 
-  // Add contact
-  const addContact = (contact: Contact) => {
-    contact._id = uuid.v4();
-    dispatch({ type: ADD_CONTACT, payload: contact });
+  // Add item
+  const addItem = (item: Item) => {
+    item._id = uuid.v4();
+    dispatch({ type: ADD_CONTACT, payload: item });
   };
 
   // Add skill
@@ -93,33 +93,33 @@ const ContactState = (props: any) => {
     dispatch({ type: ADD_SKILL, payload: skill });
   };
 
-  // Delete contact
-  const deleteContact = (id: number) => {
+  // Delete item
+  const deleteItem = (id: number) => {
     dispatch({ type: DELETE_CONTACT, payload: id });
   };
 
-  // Clear contacts
-  const clearContacts = () => {
+  // Clear items
+  const clearItems = () => {
     dispatch({ type: CLEAR_CONTACTS });
   };
 
-  // Set current contact
-  const setCurrent = (contact: Contact) => {
-    dispatch({ type: SET_CURRENT, payload: contact });
+  // Set current item
+  const setCurrent = (item: Item) => {
+    dispatch({ type: SET_CURRENT, payload: item });
   };
 
-  // Clear current contact
+  // Clear current item
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
   };
 
-  // Update contact
-  const updateContact = (contact: Contact) => {
-    dispatch({ type: UPDATE_CONTACT, payload: contact });
+  // Update item
+  const updateItem = (item: Item) => {
+    dispatch({ type: UPDATE_CONTACT, payload: item });
   };
 
-  // Filter contacts
-  const filterContacts = (filter: string) => {
+  // Filter items
+  const filterItems = (filter: string) => {
     dispatch({ type: FILTER_CONTACTS, payload: filter });
   };
 
@@ -128,32 +128,32 @@ const ContactState = (props: any) => {
     dispatch({ type: CLEAR_FILTER });
   };
 
-  const { contacts, current, filtered, error, loading, skills } = state;
+  const { items, current, filtered, error, loading, skills } = state;
 
   return (
-    <ContactContext.Provider
+    <ItemContext.Provider
       value={{
-        contacts,
+        items,
         current,
         filtered,
         error,
         loading,
         skills,
 
-        addContact,
+        addItem,
         addSkill,
-        deleteContact,
+        deleteItem,
         setCurrent,
         clearCurrent,
-        updateContact,
-        filterContacts,
+        updateItem,
+        filterItems,
         clearFilter,
-        clearContacts
+        clearItems
       }}
     >
       {props.children}
-    </ContactContext.Provider>
+    </ItemContext.Provider>
   );
 };
 
-export default ContactState;
+export default ItemState;

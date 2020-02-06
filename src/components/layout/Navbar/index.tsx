@@ -7,20 +7,20 @@ const Navbar = () => {
       <nav>
         <div className="nav-wrapper blue">
           <a href="/" className="brand-logo center">
-            Awesome Contact List
+            Awesome Game List
           </a>
           <a href="#mobile-nav-menu" className="sidenav-trigger">
             <i className="material-icons">menu</i>
           </a>
           <ul id="nav-mobile" className="left hide-on-med-and-down">
             <li>
-              <Link to="/contacts">
-                <i className="material-icons left">person</i>Contacts
+              <Link to="/games">
+                <i className="material-icons left">person</i>Games
               </Link>
             </li>
             <li>
               <Link to="/skills">
-                <i className="material-icons left">build</i>Skills
+                <i className="material-icons left">build</i>Tags
               </Link>
             </li>
           </ul>
@@ -28,13 +28,13 @@ const Navbar = () => {
       </nav>
       <ul id="mobile-nav-menu" className="sidenav">
         <li>
-          <Link to="/contacts">
-            <i className="material-icons left">person</i>Contacts
+          <Link to="/games">
+            <i className="material-icons left">person</i>Games
           </Link>
         </li>
         <li>
           <Link to="/skills">
-            <i className="material-icons left">build</i>Skills
+            <i className="material-icons left">build</i>Tags
           </Link>
         </li>
       </ul>

@@ -1,14 +1,14 @@
 import React from "react";
 import dayjs from "dayjs";
-import { Contact, Skill } from "context/contacts/model";
+import { Item, Skill } from "context/items/model";
 
-interface ContactTableItemProps {
-  contact: Contact;
+interface ItemTableItemProps {
+  item: Item;
 }
 
-const ContactTableItem = ({
-  contact: { _id, name, email, phone, company, department, dateAdded, skills }
-}: ContactTableItemProps) => {
+const ItemTableItem = ({
+  item: { _id, name, email, phone, company, department, dateAdded, skills }
+}: ItemTableItemProps) => {
   return (
     <tr key={_id}>
       <td>{name}</td>
@@ -29,4 +29,4 @@ const ContactTableItem = ({
   );
 };
 
-export default ContactTableItem;
+export default ItemTableItem;

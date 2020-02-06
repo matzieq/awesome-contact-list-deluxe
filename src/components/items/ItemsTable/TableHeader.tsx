@@ -1,15 +1,15 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { Contact } from "context/contacts/model";
+import { Item } from "context/items/model";
 
 interface TableHeaderProps {
   setSortMethod: Dispatch<
-    SetStateAction<((a: Contact, b: Contact) => number) | null>
+    SetStateAction<((a: Item, b: Item) => number) | null>
   >;
 }
 
 const TableHeader: React.FC<TableHeaderProps> = ({ setSortMethod }) => {
   const [isSortingAscending, setIsSortingAscending] = useState(true);
-  const [sortKey, setSortKey] = useState<keyof Contact>("name");
+  const [sortKey, setSortKey] = useState<keyof Item>("name");
 
   const sortAscending = (a: any, b: any) => {
     if (a < b) {
@@ -31,7 +31,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({ setSortMethod }) => {
     return 0;
   };
 
-  const setSortProperty = (key: keyof Contact) => {
+  const setSortProperty = (key: keyof Item) => {
     if (key === sortKey) {
       setIsSortingAscending(!isSortingAscending);
     } else {
@@ -39,7 +39,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({ setSortMethod }) => {
       setSortKey(key);
     }
 
-    setSortMethod(() => (a: Contact, b: Contact) =>
+    setSortMethod(() => (a: Item, b: Item) =>
       isSortingAscending
         ? sortAscending(a[key], b[key])
         : sortDescending(a[key], b[key])

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import contactContext from "context/contacts/contactContext";
+import itemContext from "context/items/itemContext";
 import dayjs from "dayjs";
-import { Skill } from "context/contacts/model";
+import { Skill } from "context/items/model";
 import M from "materialize-css";
 
-const AddContactModal = () => {
-  const { addContact, skills } = useContext(contactContext);
+const AddItemModal = () => {
+  const { addItem, skills } = useContext(itemContext);
   console.log(skills);
 
   useEffect(() => {
@@ -26,12 +26,12 @@ const AddContactModal = () => {
           skills.find((skill: Skill) => skill._id.toString() === skillFromForm)
         )
     };
-    addContact(dataItem);
+    addItem(dataItem);
     setSubmitting(false);
   };
 
   return (
-    <div id="add-contact-modal" className="modal">
+    <div id="add-item-modal" className="modal">
       <div className="modal-content">
         <Formik
           initialValues={{
@@ -74,4 +74,4 @@ const AddContactModal = () => {
   );
 };
 
-export default AddContactModal;
+export default AddItemModal;

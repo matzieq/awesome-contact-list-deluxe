@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import contactContext from "context/contacts/contactContext";
-import { Skill } from "context/contacts/model";
+import itemContext from "context/items/itemContext";
+import { Skill } from "context/items/model";
 
 const Skills = () => {
-  const { skills } = useContext(contactContext);
+  const { skills } = useContext(itemContext);
   return (
     <table>
       <thead>

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import contactContext from "context/contacts/contactContext";
+import itemContext from "context/items/itemContext";
 
 const AddSkillModal = () => {
-  const { addSkill } = useContext(contactContext);
+  const { addSkill } = useContext(itemContext);
 
   const onSubmit = (values: any, actions: any) => {
     const { name } = values;

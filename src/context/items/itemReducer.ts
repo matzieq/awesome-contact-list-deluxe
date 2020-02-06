@@ -11,7 +11,7 @@ import {
   CONTACT_ERROR,
   ADD_SKILL
 } from "../types";
-import { Contact, Action } from "context/contacts/model";
+import { Item, Action } from "context/items/model";
 
 export default (state: any, action: Action) => {
   const { type, payload } = action;
@@ -20,13 +20,13 @@ export default (state: any, action: Action) => {
     case GET_CONTACTS:
       return {
         ...state,
-        contacts: payload,
+        items: payload,
         loading: false
       };
     case ADD_CONTACT:
       return {
         ...state,
-        contacts: [payload, ...state.contacts],
+        items: [payload, ...state.items],
         loading: false
       };
     case ADD_SKILL:
@@ -37,23 +37,21 @@ export default (state: any, action: Action) => {
     case UPDATE_CONTACT:
       return {
         ...state,
-        contacts: state.contacts.map((contact: Contact) =>
-          contact._id === payload._id ? payload : contact
+        items: state.items.map((item: Item) =>
+          item._id === payload._id ? payload : item
         ),
         loading: false
       };
     case DELETE_CONTACT:
       return {
         ...state,
-        contacts: state.contacts.filter(
-          (contact: Contact) => contact._id !== payload
-        ),
+        items: state.items.filter((item: Item) => item._id !== payload),
         loading: false
       };
     case CLEAR_CONTACTS:
       return {
         ...state,
-        contacts: null,
+        items: null,
         filter: null,
         error: null,
         current: null,
@@ -68,12 +66,12 @@ export default (state: any, action: Action) => {
     case FILTER_CONTACTS:
       return {
         ...state,
-        filtered: state.contacts.filter((contact: Contact) => {
+        filtered: state.items.filter((item: Item) => {
           const regex = new RegExp(`${payload}`, "gi");
           return (
-            contact.name.match(regex) ||
-            contact.email.match(regex) ||
-            contact.phone.match(regex)
+            item.name.match(regex) ||
+            item.email.match(regex) ||
+            item.phone.match(regex)
           );
         })
       };

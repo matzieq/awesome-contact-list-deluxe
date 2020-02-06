@@ -3,7 +3,7 @@ export interface Skill {
   name: string;
 }
 
-export interface Contact {
+export interface Item {
   _id: number | string;
   name: string;
   email: string;
@@ -20,9 +20,9 @@ export interface Action {
 }
 
 export interface State {
-  contacts: Contact[];
-  current: Contact | null;
-  filtered: Contact[] | null;
+  items: Item[];
+  current: Item | null;
+  filtered: Item[] | null;
   error: any;
   loading: boolean;
   skills: Skill[];

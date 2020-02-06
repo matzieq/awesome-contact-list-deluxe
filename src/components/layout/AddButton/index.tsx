@@ -9,7 +9,7 @@ const AddButton = () => {
       <ul>
         <li>
           <a
-            href="#add-contact-modal"
+            href="#add-item-modal"
             className="btn-floating cyan darken-2 modal-trigger"
           >
             <i className="material-icons">person</i>
