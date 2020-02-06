@@ -3,19 +3,19 @@ import itemContext from "context/items/itemContext";
 import { Skill } from "context/items/model";
 
 const Skills = () => {
-  const { skills } = useContext(itemContext);
+  const { tags } = useContext(itemContext);
   return (
     <table>
       <thead>
         <tr>
-          <th>Skills</th>
+          <th>Tags</th>
         </tr>
       </thead>
       <tbody>
-        {skills &&
-          skills.map((skill: Skill) => (
-            <tr key={skill._id}>
-              <td>{skill.name}</td>
+        {tags &&
+          tags.map((tag: Skill) => (
+            <tr key={tag._id}>
+              <td>{tag.name}</td>
             </tr>
           ))}
       </tbody>

@@ -9,9 +9,12 @@ import {
   FILTER_CONTACTS,
   CLEAR_FILTER,
   CONTACT_ERROR,
-  ADD_SKILL
+  ADD_TAG,
+  GET_TAGS
 } from "../types";
 import { Item, Action } from "context/items/model";
+
+const localStorageName = "AWESOME_GAME_LIST_DATA";
 
 export default (state: any, action: Action) => {
   const { type, payload } = action;
@@ -23,16 +26,38 @@ export default (state: any, action: Action) => {
         items: payload,
         loading: false
       };
+    case GET_TAGS:
+      return {
+        ...state,
+        tags: payload,
+        loading: false
+      };
     case ADD_CONTACT:
+      console.log("State items: ", state.items);
+      localStorage.setItem(
+        localStorageName,
+        JSON.stringify({
+          contactData: [payload, ...state.items],
+          tagData: state.tags
+        })
+      );
       return {
         ...state,
         items: [payload, ...state.items],
         loading: false
       };
-    case ADD_SKILL:
+    case ADD_TAG:
+      console.log("State tag: ", state.tags);
+      localStorage.setItem(
+        localStorageName,
+        JSON.stringify({
+          contactData: state.items,
+          tagData: [payload, ...state.tags]
+        })
+      );
       return {
         ...state,
-        skills: [payload, ...state.skills]
+        tags: [payload, ...state.tags]
       };
     case UPDATE_CONTACT:
       return {
@@ -68,11 +93,7 @@ export default (state: any, action: Action) => {
         ...state,
         filtered: state.items.filter((item: Item) => {
           const regex = new RegExp(`${payload}`, "gi");
-          return (
-            item.name.match(regex) ||
-            item.email.match(regex) ||
-            item.phone.match(regex)
-          );
+          return item.name.match(regex) || item.platform.match(regex);
         })
       };
     case CLEAR_FILTER:

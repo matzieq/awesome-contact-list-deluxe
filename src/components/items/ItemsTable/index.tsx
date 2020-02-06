@@ -16,21 +16,20 @@ const ItemsTable = ({ items }: ContacsTableProps) => {
     setFilter(e.target.value);
   };
 
-  const filteredItems = items.filter(
-    item =>
-      item.name.toLowerCase().includes(filter.toLowerCase()) ||
-      item.email.toLowerCase().includes(filter.toLowerCase()) ||
-      item.phone.toLowerCase().includes(filter.toLowerCase()) ||
-      item.company.toLowerCase().includes(filter.toLowerCase()) ||
-      item.department.toLowerCase().includes(filter.toLowerCase()) ||
-      item.dateAdded
-        .toString()
-        .toLowerCase()
-        .includes(filter.toLowerCase()) ||
-      item.skills.find(skill =>
-        skill.name.toLowerCase().includes(filter.toLowerCase())
-      )
-  );
+  const filteredItems =
+    items &&
+    items.filter(
+      item =>
+        item.name.toLowerCase().includes(filter.toLowerCase()) ||
+        item.platform.toLowerCase().includes(filter.toLowerCase()) ||
+        item.dateAdded
+          .toString()
+          .toLowerCase()
+          .includes(filter.toLowerCase()) ||
+        item.tags.find(tag =>
+          tag.name.toLowerCase().includes(filter.toLowerCase())
+        )
+    );
 
   const sortedItems = sortMethod
     ? filteredItems.sort(sortMethod)
@@ -53,9 +52,10 @@ const ItemsTable = ({ items }: ContacsTableProps) => {
         <table>
           <TableHeader setSortMethod={setSortMethod} />
           <tbody>
-            {sortedItems.map((item: Item) => (
-              <ItemTableItem key={item._id} item={item} />
-            ))}
+            {sortedItems &&
+              sortedItems.map((item: Item) => (
+                <ItemTableItem key={item._id} item={item} />
+              ))}
           </tbody>
         </table>
       </div>

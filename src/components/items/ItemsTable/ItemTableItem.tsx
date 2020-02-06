@@ -7,21 +7,18 @@ interface ItemTableItemProps {
 }
 
 const ItemTableItem = ({
-  item: { _id, name, email, phone, company, department, dateAdded, skills }
+  item: { _id, name, platform, dateAdded, tags }
 }: ItemTableItemProps) => {
   return (
     <tr key={_id}>
       <td>{name}</td>
-      <td>{email}</td>
-      <td>{phone}</td>
-      <td>{company}</td>
-      <td>{department}</td>
+      <td>{platform}</td>
       <td>{dayjs(dateAdded).format("MM/DD/YYYY")}</td>
       <td>
-        {skills &&
-          skills.map((skill: Skill) => (
-            <span key={skill._id} style={{ display: "block" }}>
-              {skill.name}
+        {tags &&
+          tags.map((tag: Skill) => (
+            <span key={tag._id} style={{ display: "block" }}>
+              {tag.name}
             </span>
           ))}
       </td>

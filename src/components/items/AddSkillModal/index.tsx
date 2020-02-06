@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import itemContext from "context/items/itemContext";
 
 const AddSkillModal = () => {
-  const { addSkill } = useContext(itemContext);
+  const { addTag } = useContext(itemContext);
 
   const onSubmit = (values: any, actions: any) => {
     const { name } = values;
@@ -12,7 +12,7 @@ const AddSkillModal = () => {
     const dataItem = {
       name
     };
-    addSkill(dataItem);
+    addTag(dataItem);
     setSubmitting(false);
   };
 

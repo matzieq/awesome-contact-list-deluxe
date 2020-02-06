@@ -21,4 +21,5 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
-export const ADD_SKILL = "ADD_SKILL";
+export const ADD_TAG = "ADD_TAG";
+export const GET_TAGS = "GET_TAGS";

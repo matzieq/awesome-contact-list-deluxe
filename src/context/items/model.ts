@@ -6,12 +6,9 @@ export interface Skill {
 export interface Item {
   _id: number | string;
   name: string;
-  email: string;
-  phone: string;
-  company: string;
-  department: string;
+  platform: string;
   dateAdded: Date;
-  skills: Skill[];
+  tags: Skill[];
 }
 
 export interface Action {
@@ -25,5 +22,5 @@ export interface State {
   filtered: Item[] | null;
   error: any;
   loading: boolean;
-  skills: Skill[];
+  tags: Skill[];
 }

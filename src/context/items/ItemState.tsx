@@ -5,7 +5,7 @@ import { Item, State, Skill } from "context/items/model";
 import uuid from "uuid";
 
 import {
-  // GET_CONTACTS,
+  GET_CONTACTS,
   CLEAR_CONTACTS,
   ADD_CONTACT,
   DELETE_CONTACT,
@@ -14,72 +14,41 @@ import {
   UPDATE_CONTACT,
   FILTER_CONTACTS,
   CLEAR_FILTER,
-  ADD_SKILL
+  ADD_TAG,
+  GET_TAGS
   // CONTACT_ERROR
 } from "../types";
 
+const localStorageName = "AWESOME_GAME_LIST_DATA";
+
 const ItemState = (props: any) => {
   const initialState: State = {
-    items: [
-      {
-        _id: 1,
-        name: "Witek Prytek",
-        email: "mietek@pletwa.com",
-        phone: "66666",
-        company: "Pletwa",
-        department: "Alpaga",
-        dateAdded: new Date(2019, 6, 5),
-        skills: [
-          { _id: 1, name: "Wałęsanie się" },
-          { _id: 2, name: "Kłapanie" }
-        ]
-      },
-      {
-        _id: 2,
-        name: "Janek Dzbanek",
-        email: "janek@pletwa.com",
-        phone: "666667777",
-        company: "Pletwa",
-        department: "Grzyb",
-        dateAdded: new Date(2018, 5, 10),
-        skills: [
-          { _id: 1, name: "Wałęsanie się" },
-          { _id: 3, name: "Grzybobranie" }
-        ]
-      },
-      {
-        _id: 3,
-        name: "Józek Wózek",
-        email: "juzek@pletwa.com",
-        phone: "66666777788",
-        company: "Blob",
-        department: "Pletwa",
-        dateAdded: new Date(),
-        skills: [
-          { _id: 2, name: "Kłapanie" },
-          { _id: 3, name: "Grzybobranie" }
-        ]
-      }
-    ],
+    items: [],
     current: null,
     filtered: null,
     error: null,
     loading: true,
-    skills: [
-      { _id: 1, name: "Wałęsanie się" },
-      { _id: 2, name: "Kłapanie" },
-      { _id: 3, name: "Grzybobranie" }
-    ]
+    tags: []
   };
 
   const [state, dispatch] = useReducer(itemReducer, initialState);
 
   // Get items
-  // const getItems = async () => {
+  const getItems = () => {
+    const data =
+      window.localStorage.getItem(localStorageName) == null
+        ? { contactData: [], tagData: [] }
+        : JSON.parse(localStorage.getItem(localStorageName) || "");
+    dispatch({ type: GET_CONTACTS, payload: data.contactData });
+  };
 
-  //     dispatch({ type: GET_CONTACTS, payload: res.data });
-
-  // };
+  const getTags = () => {
+    const data =
+      window.localStorage.getItem(localStorageName) == null
+        ? { contactData: [], tagData: [] }
+        : JSON.parse(localStorage.getItem(localStorageName) || "");
+    dispatch({ type: GET_TAGS, payload: data.tagData });
+  };
 
   // Add item
   const addItem = (item: Item) => {
@@ -88,9 +57,9 @@ const ItemState = (props: any) => {
   };
 
   // Add skill
-  const addSkill = (skill: Skill) => {
-    skill._id = uuid.v4();
-    dispatch({ type: ADD_SKILL, payload: skill });
+  const addTag = (tag: Skill) => {
+    tag._id = uuid.v4();
+    dispatch({ type: ADD_TAG, payload: tag });
   };
 
   // Delete item
@@ -128,7 +97,7 @@ const ItemState = (props: any) => {
     dispatch({ type: CLEAR_FILTER });
   };
 
-  const { items, current, filtered, error, loading, skills } = state;
+  const { items, current, filtered, error, loading, tags } = state;
 
   return (
     <ItemContext.Provider
@@ -138,10 +107,12 @@ const ItemState = (props: any) => {
         filtered,
         error,
         loading,
-        skills,
+        tags,
 
+        getItems,
+        getTags,
         addItem,
-        addSkill,
+        addTag,
         deleteItem,
         setCurrent,
         clearCurrent,

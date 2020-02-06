@@ -15,6 +15,8 @@ import AddButton from "components/layout/AddButton";
 import AddItemModal from "components/items/AddItemModal";
 import AddSkillModal from "components/items/AddSkillModal";
 
+const localStorageName = "AWESOME_GAME_LIST_DATA";
+
 const App: React.FC = () => {
   useEffect(() => {
     M.AutoInit();
@@ -29,6 +31,9 @@ const App: React.FC = () => {
             <Route exact path="/skills" component={Skills} />
           </Switch>
           <AddButton />
+          <button onClick={() => localStorage.removeItem(localStorageName)}>
+            DEBUG
+          </button>
         </div>
         <AddItemModal />
         <AddSkillModal />
