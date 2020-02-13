@@ -3,8 +3,9 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import itemContext from "context/items/itemContext";
 import dayjs from "dayjs";
-import { Tag } from "context/items/model";
+import { Tag } from "context/model";
 import M from "materialize-css";
+import TagContext from "context/tags/tagContext";
 
 const ItemSchema = Yup.object().shape({
   name: Yup.string().required("This field is required"),
@@ -12,7 +13,8 @@ const ItemSchema = Yup.object().shape({
 });
 
 const AddItemModal = () => {
-  const { addItem, tags } = useContext(itemContext);
+  const { addItem } = useContext(itemContext);
+  const { tags } = useContext(TagContext);
 
   const modalRef = useRef(null);
   useEffect(() => {

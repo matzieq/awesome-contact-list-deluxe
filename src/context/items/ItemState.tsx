@@ -1,35 +1,31 @@
 import React, { useReducer } from "react";
 import ItemContext from "./itemContext";
 import itemReducer from "./itemReducer";
-import { Item, State, Tag } from "context/items/model";
+import { Item } from "context/model";
 import uuid from "uuid";
+import { ITEM_STORAGE_NAME } from "shared/constants";
 
 import {
   GET_ITEMS,
   CLEAR_ITEMS,
   ADD_ITEM,
   DELETE_ITEM,
-  DELETE_TAG,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_ITEM,
   FILTER_ITEMS,
-  CLEAR_FILTER,
-  ADD_TAG,
-  GET_TAGS
+  CLEAR_FILTER
+
   // ITEM_ERROR
 } from "../types";
 
-const localStorageName = "AWESOME_GAME_LIST_DATA";
-
 const ItemState = (props: any) => {
-  const initialState: State = {
+  const initialState: any = {
     items: [],
     current: null,
     filtered: null,
     error: null,
-    loading: true,
-    tags: []
+    loading: true
   };
 
   const [state, dispatch] = useReducer(itemReducer, initialState);
@@ -37,18 +33,10 @@ const ItemState = (props: any) => {
   // Get items
   const getItems = () => {
     const data =
-      window.localStorage.getItem(localStorageName) == null
-        ? { contactData: [], tagData: [] }
-        : JSON.parse(localStorage.getItem(localStorageName) || "");
+      window.localStorage.getItem(ITEM_STORAGE_NAME) == null
+        ? { contactData: [] }
+        : JSON.parse(localStorage.getItem(ITEM_STORAGE_NAME) || "");
     dispatch({ type: GET_ITEMS, payload: data.contactData });
-  };
-
-  const getTags = () => {
-    const data =
-      window.localStorage.getItem(localStorageName) == null
-        ? { contactData: [], tagData: [] }
-        : JSON.parse(localStorage.getItem(localStorageName) || "");
-    dispatch({ type: GET_TAGS, payload: data.tagData });
   };
 
   // Add item
@@ -57,19 +45,9 @@ const ItemState = (props: any) => {
     dispatch({ type: ADD_ITEM, payload: item });
   };
 
-  // Add tag
-  const addTag = (tag: Tag) => {
-    tag._id = uuid.v4();
-    dispatch({ type: ADD_TAG, payload: tag });
-  };
-
   // Delete item
   const deleteItem = (id: number) => {
     dispatch({ type: DELETE_ITEM, payload: id });
-  };
-
-  const deleteTag = (id: number) => {
-    dispatch({ type: DELETE_TAG, payload: id });
   };
 
   // Clear items
@@ -102,7 +80,7 @@ const ItemState = (props: any) => {
     dispatch({ type: CLEAR_FILTER });
   };
 
-  const { items, current, filtered, error, loading, tags } = state;
+  const { items, current, filtered, error, loading } = state;
 
   return (
     <ItemContext.Provider
@@ -112,14 +90,11 @@ const ItemState = (props: any) => {
         filtered,
         error,
         loading,
-        tags,
 
         getItems,
-        getTags,
+
         addItem,
-        addTag,
         deleteItem,
-        deleteTag,
         setCurrent,
         clearCurrent,
         updateItem,

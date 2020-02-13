@@ -23,4 +23,5 @@ export interface State {
   error: any;
   loading: boolean;
   tags: Tag[];
+  editedTag: Tag | null;
 }

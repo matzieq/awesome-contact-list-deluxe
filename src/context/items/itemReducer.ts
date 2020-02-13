@@ -3,19 +3,15 @@ import {
   CLEAR_ITEMS,
   ADD_ITEM,
   DELETE_ITEM,
-  DELETE_TAG,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_ITEM,
   FILTER_ITEMS,
   CLEAR_FILTER,
-  ITEM_ERROR,
-  ADD_TAG,
-  GET_TAGS
+  ITEM_ERROR
 } from "../types";
-import { Item, Action, Tag } from "context/items/model";
-
-const localStorageName = "AWESOME_GAME_LIST_DATA";
+import { Item, Action } from "context/model";
+import { ITEM_STORAGE_NAME } from "shared/constants";
 
 export default (state: any, action: Action) => {
   const { type, payload } = action;
@@ -27,19 +23,13 @@ export default (state: any, action: Action) => {
         items: payload,
         loading: false
       };
-    case GET_TAGS:
-      return {
-        ...state,
-        tags: payload,
-        loading: false
-      };
+
     case ADD_ITEM:
       console.log("State items: ", state.items);
       localStorage.setItem(
-        localStorageName,
+        ITEM_STORAGE_NAME,
         JSON.stringify({
-          contactData: [payload, ...state.items],
-          tagData: state.tags
+          contactData: [payload, ...state.items]
         })
       );
       return {
@@ -47,19 +37,7 @@ export default (state: any, action: Action) => {
         items: [payload, ...state.items],
         loading: false
       };
-    case ADD_TAG:
-      console.log("State tag: ", state.tags);
-      localStorage.setItem(
-        localStorageName,
-        JSON.stringify({
-          contactData: state.items,
-          tagData: [payload, ...state.tags]
-        })
-      );
-      return {
-        ...state,
-        tags: [payload, ...state.tags]
-      };
+
     case UPDATE_ITEM:
       return {
         ...state,
@@ -74,19 +52,7 @@ export default (state: any, action: Action) => {
         items: state.items.filter((item: Item) => item._id !== payload),
         loading: false
       };
-    case DELETE_TAG:
-      localStorage.setItem(
-        localStorageName,
-        JSON.stringify({
-          contactData: state.items,
-          tagData: state.tags.filter((tag: Tag) => tag._id !== payload)
-        })
-      );
-      return {
-        ...state,
-        tags: state.tags.filter((tag: Tag) => tag._id !== payload),
-        loading: false
-      };
+
     case CLEAR_ITEMS:
       return {
         ...state,

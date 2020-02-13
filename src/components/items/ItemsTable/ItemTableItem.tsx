@@ -1,6 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
-import { Item, Tag } from "context/items/model";
+import { Item, Tag } from "context/model";
 
 interface ItemTableItemProps {
   item: Item;

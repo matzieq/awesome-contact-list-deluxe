@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import itemContext from "context/items/itemContext";
-import { Tag } from "context/items/model";
+import { Tag } from "context/model";
+import TagContext from "context/tags/tagContext";
 
 const Tags = () => {
-  const { tags, deleteTag } = useContext(itemContext);
+  const { tags, deleteTag, setEditedTag } = useContext(TagContext);
 
   return (
     <table>
@@ -19,10 +19,19 @@ const Tags = () => {
               <td>{tag.name}</td>
               <td>
                 <div className="row">
-                  <div className="col s1 offset-s11">
+                  <div className="col s1 right">
                     <button className="btn" onClick={() => deleteTag(tag._id)}>
                       <i className="material-icons">delete</i>
                     </button>
+                  </div>
+                  <div className="col s1 right">
+                    <a
+                      href="#edit-tag-modal"
+                      className="btn modal-trigger"
+                      onClick={() => setEditedTag(tag)}
+                    >
+                      <i className="material-icons">build</i>
+                    </a>
                   </div>
                 </div>
               </td>

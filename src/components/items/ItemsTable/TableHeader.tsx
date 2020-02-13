@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { Item } from "context/items/model";
+import { Item } from "context/model";
 
 interface TableHeaderProps {
   setSortMethod: Dispatch<

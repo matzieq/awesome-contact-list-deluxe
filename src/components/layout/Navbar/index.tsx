@@ -1,9 +1,11 @@
 import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import itemContext from "context/items/itemContext";
+import tagContext from "context/tags/tagContext";
 
 const Navbar = () => {
-  const { getItems, getTags } = useContext(itemContext);
+  const { getItems } = useContext(itemContext);
+  const { getTags } = useContext(tagContext);
 
   useEffect(() => {
     getItems();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TableHeader from "./TableHeader";
 import ItemTableItem from "./ItemTableItem";
-import { Item } from "context/items/model";
+import { Item } from "context/model";
 
 interface ContacsTableProps {
   items: Item[];

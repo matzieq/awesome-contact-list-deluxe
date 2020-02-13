@@ -1,15 +1,15 @@
 import React, { useContext, useRef } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import itemContext from "context/items/itemContext";
 import M from "materialize-css";
 import * as Yup from "yup";
+import tagContext from "context/tags/tagContext";
 
 const TagSchema = Yup.object().shape({
   name: Yup.string().required("This field is required")
 });
 
 const AddTagModal = () => {
-  const { addTag } = useContext(itemContext);
+  const { addTag } = useContext(tagContext);
   const modalRef = useRef(null);
 
   const onSubmit = (values: any, actions: any) => {

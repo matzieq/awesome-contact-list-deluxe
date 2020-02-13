@@ -24,4 +24,8 @@ export const LOGOUT = "LOGOUT";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const ADD_TAG = "ADD_TAG";
+export const UPDATE_TAG = "UPDATE_TAG";
+export const SET_EDITED_TAG = "SET_EDITED_TAG";
+export const CLEAR_EDITED_TAG = "CLEAR_EDITED_TAG";
+
 export const GET_TAGS = "GET_TAGS";
