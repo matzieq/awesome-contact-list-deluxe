@@ -21,7 +21,7 @@ const ItemsTable = ({ items }: ContacsTableProps) => {
     items.filter(
       item =>
         item.name.toLowerCase().includes(filter.toLowerCase()) ||
-        item.platform.toLowerCase().includes(filter.toLowerCase()) ||
+        item.platform.name.toLowerCase().includes(filter.toLowerCase()) ||
         item.dateAdded
           .toString()
           .toLowerCase()
@@ -58,6 +58,11 @@ const ItemsTable = ({ items }: ContacsTableProps) => {
               ))}
           </tbody>
         </table>
+      </div>
+      <div className="col s12">
+        <a href="#add-item-modal" className="btn modal-trigger right">
+          new<i className="material-icons right">add</i>
+        </a>
       </div>
     </div>
   );

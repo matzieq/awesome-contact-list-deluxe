@@ -3,10 +3,15 @@ export interface Tag {
   name: string;
 }
 
+export interface Platform {
+  _id: number | string;
+  name: string;
+}
+
 export interface Item {
   _id: number | string;
   name: string;
-  platform: string;
+  platform: Platform;
   dateAdded: Date;
   tags: Tag[];
 }

@@ -2,14 +2,14 @@ import React, { useContext, useRef } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import M from "materialize-css";
 import * as Yup from "yup";
-import tagContext from "context/tags/tagContext";
+import platformContext from "context/platforms/platformContext";
 
-const TagSchema = Yup.object().shape({
+const PlatformSchema = Yup.object().shape({
   name: Yup.string().required("This field is required")
 });
 
-const AddTagModal = () => {
-  const { addTag } = useContext(tagContext);
+const AddPlatformModal = () => {
+  const { addPlatform } = useContext(platformContext);
   const modalRef = useRef(null);
 
   const onSubmit = (values: any, actions: any) => {
@@ -20,7 +20,7 @@ const AddTagModal = () => {
       name
     };
 
-    addTag(dataItem);
+    addPlatform(dataItem);
     if (modalRef.current) {
       const modalInstance = M.Modal.getInstance(modalRef.current);
       modalInstance.close();
@@ -30,15 +30,14 @@ const AddTagModal = () => {
   };
 
   return (
-    <div id="add-tag-modal" ref={modalRef} className="modal">
+    <div id="add-platform-modal" ref={modalRef} className="modal">
       <div className="modal-content">
-        <h5>Add tag</h5>
         <Formik
           initialValues={{
             name: ""
           }}
           onSubmit={onSubmit}
-          validationSchema={TagSchema}
+          validationSchema={PlatformSchema}
         >
           {() => (
             <Form>
@@ -55,4 +54,4 @@ const AddTagModal = () => {
   );
 };
 
-export default AddTagModal;
+export default AddPlatformModal;

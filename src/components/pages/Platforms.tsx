@@ -1,39 +1,41 @@
 import React, { useContext } from "react";
-import { Tag } from "context/model";
-import TagContext from "context/tags/tagContext";
+import { Platform } from "context/model";
+import PlatformContext from "context/platforms/platformContext";
 
-const Tags = () => {
-  const { tags, deleteTag, setEditedTag } = useContext(TagContext);
+const Platforms = () => {
+  const { platforms, deletePlatform, setEditedPlatform } = useContext(
+    PlatformContext
+  );
 
   return (
     <>
       <table>
         <thead>
           <tr>
-            <th>Tags</th>
+            <th>Platforms</th>
             <th className="right-align">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {tags &&
-            tags.map((tag: Tag) => (
-              <tr key={tag._id}>
-                <td>{tag.name}</td>
+          {platforms &&
+            platforms.map((platform: Platform) => (
+              <tr key={platform._id}>
+                <td>{platform.name}</td>
                 <td>
                   <div className="row">
                     <div className="col s2 xl1 right">
                       <button
                         className="btn right"
-                        onClick={() => deleteTag(tag._id)}
+                        onClick={() => deletePlatform(platform._id)}
                       >
                         <i className="material-icons">delete</i>
                       </button>
                     </div>
                     <div className="col s2 xl1 right">
                       <a
-                        href="#edit-tag-modal"
+                        href="#edit-platform-modal"
                         className="btn modal-trigger right"
-                        onClick={() => setEditedTag(tag)}
+                        onClick={() => setEditedPlatform(platform)}
                       >
                         <i className="material-icons">build</i>
                       </a>
@@ -45,11 +47,11 @@ const Tags = () => {
         </tbody>
       </table>
 
-      <a href="#add-tag-modal" className="btn modal-trigger right">
+      <a href="#add-platform-modal" className="btn modal-trigger right">
         new<i className="material-icons right">add</i>
       </a>
     </>
   );
 };
 
-export default Tags;
+export default Platforms;

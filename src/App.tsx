@@ -10,19 +10,21 @@ import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 
 import ItemState from "context/items/ItemState";
+import PlatformState from "context/platforms/PlatformState";
 
 import Navbar from "components/layout/Navbar";
 import Items from "components/pages/Items";
 import Tags from "components/pages/Tags";
+import Platforms from "components/pages/Platforms";
 
-import "./App.css";
 import AddButton from "components/layout/AddButton";
 import AddItemModal from "components/items/AddItemModal";
 import AddTagModal from "components/items/AddTagModal";
 import EditTagModal from "components/items/EditTagModal";
-import { TAG_STORAGE_NAME, ITEM_STORAGE_NAME } from "shared/constants";
 import TagState from "context/tags/TagState";
 import EditItemModal from "components/items/EditITemModal";
+import AddPlatformModal from "components/items/AddPlatformModal";
+import EditPlatformModal from "components/items/EditPlatformModal";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -32,30 +34,26 @@ const App: React.FC = () => {
     <Router>
       <ItemState>
         <TagState>
-          <Navbar />
-          <div className="container">
-            <Switch>
-              <Route exact path="/games" component={Items} />
-              <Route exact path="/tags" component={Tags} />
-              <Route exact path="/">
-                <Redirect to="/games" />
-              </Route>
-            </Switch>
-            <AddButton />
-            <button
-              className="btn"
-              onClick={() => {
-                localStorage.removeItem(ITEM_STORAGE_NAME);
-                localStorage.removeItem(TAG_STORAGE_NAME);
-              }}
-            >
-              DEBUG delete all storage
-            </button>
-          </div>
-          <AddItemModal />
-          <AddTagModal />
-          <EditTagModal />
-          <EditItemModal />
+          <PlatformState>
+            <Navbar />
+            <div className="container">
+              <Switch>
+                <Route exact path="/games" component={Items} />
+                <Route exact path="/platforms" component={Platforms} />
+                <Route exact path="/tags" component={Tags} />
+                <Route exact path="/">
+                  <Redirect to="/games" />
+                </Route>
+              </Switch>
+              <AddButton />
+            </div>
+            <AddItemModal />
+            <AddTagModal />
+            <EditTagModal />
+            <EditItemModal />
+            <AddPlatformModal />
+            <EditPlatformModal />
+          </PlatformState>
         </TagState>
       </ItemState>
     </Router>

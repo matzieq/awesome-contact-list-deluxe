@@ -12,7 +12,7 @@ const AddButton = () => {
             href="#add-item-modal"
             className="btn-floating cyan darken-2 modal-trigger"
           >
-            <i className="material-icons">person</i>
+            <i className="material-icons">games</i>
           </a>
         </li>
         <li>
@@ -20,7 +20,15 @@ const AddButton = () => {
             href="#add-tag-modal"
             className="btn-floating cyan darken-2 modal-trigger"
           >
-            <i className="material-icons">build</i>
+            <i className="material-icons">format_list_bulleted</i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#add-platform-modal"
+            className="btn-floating cyan darken-2 modal-trigger"
+          >
+            <i className="material-icons">tv</i>
           </a>
         </li>
       </ul>

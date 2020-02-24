@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useRef } from "react";
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import itemContext from "context/items/itemContext";
-import dayjs from "dayjs";
-import { Tag } from "context/model";
+import { Tag, Platform } from "context/model";
 import M from "materialize-css";
 import TagContext from "context/tags/tagContext";
+import PlatformContext from "context/platforms/platformContext";
 
 const ItemSchema = Yup.object().shape({
   name: Yup.string().required("This field is required"),
@@ -15,7 +15,8 @@ const ItemSchema = Yup.object().shape({
 const EditItemModal = () => {
   const { current, updateItem, clearCurrent } = useContext(itemContext);
   const { tags } = useContext(TagContext);
-
+  const { platforms } = useContext(PlatformContext);
+  console.log("Edit", platforms);
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -34,6 +35,9 @@ const EditItemModal = () => {
       _id: current._id,
       ...values,
       dateAdded: current.dateAdded,
+      platform: platforms.find(
+        (platform: Platform) => platform._id.toString() === values.platform
+      ),
       tags: values.tags
         .filter((tag: string) => tag !== "")
         .map((tagFromForm: string) =>
@@ -59,7 +63,7 @@ const EditItemModal = () => {
           <Formik
             initialValues={{
               name: current.name,
-              platform: current.platform,
+              platform: current.platform._id,
               tags: current.tags.map(tag => tag._id)
             }}
             onSubmit={onSubmit}
@@ -69,9 +73,16 @@ const EditItemModal = () => {
               <Form>
                 <Field type="text" name="name" placeholder="Name" />
                 <ErrorMessage name="name" />
-                <Field type="text" name="platform" placeholder="Platform" />
-                <ErrorMessage name="platform" />
-                <div />
+                <Field as="select" name="platform">
+                  <option value="" disabled>
+                    Choose your option
+                  </option>
+                  {platforms.map((platform: Platform) => (
+                    <option key={platform._id} value={platform._id}>
+                      {platform.name}
+                    </option>
+                  ))}
+                </Field>
                 <Field as="select" name="tags" multiple>
                   <option value="" disabled>
                     Choose your option
@@ -83,7 +94,7 @@ const EditItemModal = () => {
                   ))}
                 </Field>
                 <button type="submit" className="btn">
-                  Update <i className="material-icons right">add</i>
+                  Update <i className="material-icons right">save_alt</i>
                 </button>
               </Form>
             )}

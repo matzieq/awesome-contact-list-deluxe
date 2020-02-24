@@ -12,10 +12,11 @@ const ItemTableItem = ({
   item: { _id, name, platform, dateAdded, tags }
 }: ItemTableItemProps) => {
   const { deleteItem, setCurrent } = useContext(ItemContext);
+  console.log(platform);
   return (
     <tr key={_id}>
       <td>{name}</td>
-      <td>{platform}</td>
+      <td>{platform.name}</td>
       <td>{dayjs(dateAdded).format("MM/DD/YYYY")}</td>
       <td>
         {tags &&
