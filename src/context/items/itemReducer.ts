@@ -47,6 +47,12 @@ export default (state: any, action: Action) => {
         loading: false
       };
     case DELETE_ITEM:
+      localStorage.setItem(
+        ITEM_STORAGE_NAME,
+        JSON.stringify({
+          contactData: state.items.filter((item: Item) => item._id !== payload)
+        })
+      );
       return {
         ...state,
         items: state.items.filter((item: Item) => item._id !== payload),

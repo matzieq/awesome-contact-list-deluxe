@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import dayjs from "dayjs";
 import { Item, Tag } from "context/model";
+import ItemContext from "context/items/itemContext";
 
 interface ItemTableItemProps {
   item: Item;
@@ -9,6 +10,7 @@ interface ItemTableItemProps {
 const ItemTableItem = ({
   item: { _id, name, platform, dateAdded, tags }
 }: ItemTableItemProps) => {
+  const { deleteItem } = useContext(ItemContext);
   return (
     <tr key={_id}>
       <td>{name}</td>
@@ -21,6 +23,24 @@ const ItemTableItem = ({
               {tag.name}
             </span>
           ))}
+      </td>
+      <td>
+        <div className="row">
+          <div className="col s1 right">
+            <button className="btn" onClick={() => deleteItem(_id)}>
+              <i className="material-icons">delete</i>
+            </button>
+          </div>
+          {/* <div className="col s1 right">
+                    <a
+                      href="#edit-tag-modal"
+                      className="btn modal-trigger"
+                      onClick={() => setEditedTag(tag)}
+                    >
+                      <i className="material-icons">build</i>
+                    </a>
+                  </div> */}
+        </div>
       </td>
     </tr>
   );
