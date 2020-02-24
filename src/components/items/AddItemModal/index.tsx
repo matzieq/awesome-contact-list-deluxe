@@ -17,9 +17,14 @@ const AddItemModal = () => {
   const { tags } = useContext(TagContext);
 
   const modalRef = useRef(null);
+
   useEffect(() => {
     const select = document.querySelectorAll("select");
-    M.FormSelect.init(select, {});
+    M.FormSelect.init(select, {
+      dropdownOptions: {
+        container: document.body
+      }
+    });
   }, [tags]);
 
   const onSubmit = (values: any, actions: any) => {
