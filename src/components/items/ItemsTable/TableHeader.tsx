@@ -53,6 +53,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({ setSortMethod }) => {
         <th onClick={() => setSortProperty("platform")}>Platform</th>
         <th onClick={() => setSortProperty("dateAdded")}>Date Added</th>
         <th>Tags</th>
+        <th className="right">Actions</th>
       </tr>
     </thead>
   );

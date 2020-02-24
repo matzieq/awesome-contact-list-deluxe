@@ -30,6 +30,7 @@ const AddItemModal = () => {
   const onSubmit = (values: any, actions: any) => {
     const { setSubmitting, resetForm } = actions;
     setSubmitting(true);
+    console.log(values.tags);
     const dataItem = {
       ...values,
       dateAdded: dayjs().format("YYYY-MM-DD"),

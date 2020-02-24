@@ -8,9 +8,10 @@ interface ItemTableItemProps {
 }
 
 const ItemTableItem = ({
+  item,
   item: { _id, name, platform, dateAdded, tags }
 }: ItemTableItemProps) => {
-  const { deleteItem } = useContext(ItemContext);
+  const { deleteItem, setCurrent } = useContext(ItemContext);
   return (
     <tr key={_id}>
       <td>{name}</td>
@@ -26,20 +27,20 @@ const ItemTableItem = ({
       </td>
       <td>
         <div className="row">
-          <div className="col s1 right">
+          <div className="col s3 right">
             <button className="btn" onClick={() => deleteItem(_id)}>
               <i className="material-icons">delete</i>
             </button>
           </div>
-          {/* <div className="col s1 right">
-                    <a
-                      href="#edit-tag-modal"
-                      className="btn modal-trigger"
-                      onClick={() => setEditedTag(tag)}
-                    >
-                      <i className="material-icons">build</i>
-                    </a>
-                  </div> */}
+          <div className="col s3 right">
+            <a
+              href="#edit-item-modal"
+              className="btn modal-trigger"
+              onClick={() => setCurrent(item)}
+            >
+              <i className="material-icons">build</i>
+            </a>
+          </div>
         </div>
       </td>
     </tr>

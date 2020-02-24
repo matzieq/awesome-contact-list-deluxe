@@ -39,6 +39,15 @@ export default (state: any, action: Action) => {
       };
 
     case UPDATE_ITEM:
+      console.log(payload);
+      localStorage.setItem(
+        ITEM_STORAGE_NAME,
+        JSON.stringify({
+          contactData: state.items.map((item: Item) =>
+            item._id === payload._id ? payload : item
+          )
+        })
+      );
       return {
         ...state,
         items: state.items.map((item: Item) =>

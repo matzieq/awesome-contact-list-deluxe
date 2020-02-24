@@ -22,6 +22,7 @@ import AddTagModal from "components/items/AddTagModal";
 import EditTagModal from "components/items/EditTagModal";
 import { TAG_STORAGE_NAME, ITEM_STORAGE_NAME } from "shared/constants";
 import TagState from "context/tags/TagState";
+import EditItemModal from "components/items/EditITemModal";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -42,17 +43,19 @@ const App: React.FC = () => {
             </Switch>
             <AddButton />
             <button
+              className="btn"
               onClick={() => {
                 localStorage.removeItem(ITEM_STORAGE_NAME);
                 localStorage.removeItem(TAG_STORAGE_NAME);
               }}
             >
-              DEBUG
+              DEBUG delete all storage
             </button>
           </div>
           <AddItemModal />
           <AddTagModal />
           <EditTagModal />
+          <EditItemModal />
         </TagState>
       </ItemState>
     </Router>

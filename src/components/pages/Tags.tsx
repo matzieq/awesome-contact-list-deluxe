@@ -10,6 +10,7 @@ const Tags = () => {
       <thead>
         <tr>
           <th>Tags</th>
+          <th className="right-align">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -19,15 +20,18 @@ const Tags = () => {
               <td>{tag.name}</td>
               <td>
                 <div className="row">
-                  <div className="col s1 right">
-                    <button className="btn" onClick={() => deleteTag(tag._id)}>
+                  <div className="col s2 xl1 right">
+                    <button
+                      className="btn right"
+                      onClick={() => deleteTag(tag._id)}
+                    >
                       <i className="material-icons">delete</i>
                     </button>
                   </div>
-                  <div className="col s1 right">
+                  <div className="col s2 xl1 right">
                     <a
                       href="#edit-tag-modal"
-                      className="btn modal-trigger"
+                      className="btn modal-trigger right"
                       onClick={() => setEditedTag(tag)}
                     >
                       <i className="material-icons">build</i>
