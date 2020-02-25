@@ -97,7 +97,7 @@ const AddItemModal = () => {
                     </option>
                   ))}
                 </Field>
-                <button type="submit" className="btn">
+                <button type="submit" className="btn black">
                   Add <i className="material-icons right">add</i>
                 </button>
               </Form>

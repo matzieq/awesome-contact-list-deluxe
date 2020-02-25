@@ -47,7 +47,7 @@ const EditTagModal = () => {
               <Form>
                 <Field type="text" name="name" placeholder="Name" />
                 <ErrorMessage name="name" component="p" />
-                <button type="submit" className="btn">
+                <button type="submit" className="btn black">
                   Update <i className="material-icons right">save_alt</i>
                 </button>
               </Form>

@@ -26,6 +26,8 @@ import EditItemModal from "components/items/EditITemModal";
 import AddPlatformModal from "components/items/AddPlatformModal";
 import EditPlatformModal from "components/items/EditPlatformModal";
 
+import "./App.css";
+
 const App: React.FC = () => {
   useEffect(() => {
     M.AutoInit();

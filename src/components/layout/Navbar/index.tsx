@@ -18,9 +18,10 @@ const Navbar = () => {
   return (
     <>
       <nav>
-        <div className="nav-wrapper blue">
+        <div className="nav-wrapper black">
           <a href="/" className="brand-logo center">
-            Awesome Game List
+            <span className="hide-on-med-and-up">AGL</span>
+            <span className="hide-on-med-and-down">AGL Deluxe</span>
           </a>
           <a href="#mobile-nav-menu" className="sidenav-trigger">
             <i className="material-icons">menu</i>
@@ -46,17 +47,17 @@ const Navbar = () => {
       </nav>
       <ul id="mobile-nav-menu" className="sidenav">
         <li>
-          <Link to="/games">
+          <Link to="/games" className="sidenav-close">
             <i className="material-icons left">games</i>Games
           </Link>
         </li>
         <li>
-          <Link to="/tags">
+          <Link to="/tags" className="sidenav-close">
             <i className="material-icons left">format_list_bulleted</i>Tags
           </Link>
         </li>
         <li>
-          <Link to="/platforms">
+          <Link to="/platforms" className="sidenav-close">
             <i className="material-icons left">tv</i>Platforms
           </Link>
         </li>

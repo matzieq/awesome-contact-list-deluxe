@@ -93,7 +93,7 @@ const EditItemModal = () => {
                     </option>
                   ))}
                 </Field>
-                <button type="submit" className="btn">
+                <button type="submit" className="btn black">
                   Update <i className="material-icons right">save_alt</i>
                 </button>
               </Form>

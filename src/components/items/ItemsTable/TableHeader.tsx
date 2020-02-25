@@ -49,11 +49,24 @@ const TableHeader: React.FC<TableHeaderProps> = ({ setSortMethod }) => {
   return (
     <thead>
       <tr>
-        <th onClick={() => setSortProperty("name")}>Name</th>
-        <th onClick={() => setSortProperty("platform")}>Platform</th>
-        <th onClick={() => setSortProperty("dateAdded")}>Date Added</th>
-        <th>Tags</th>
-        <th className="right">Actions</th>
+        <th onClick={() => setSortProperty("name")}>
+          <span className="hide-on-med-and-down">Title</span>
+          <span className="hide-on-med-and-up">Game list</span>
+        </th>
+        <th
+          onClick={() => setSortProperty("platform")}
+          className="hide-on-med-and-down"
+        >
+          Platform
+        </th>
+        <th
+          onClick={() => setSortProperty("dateAdded")}
+          className="hide-on-med-and-down"
+        >
+          Date Added
+        </th>
+        <th className="hide-on-med-and-down">Tags</th>
+        <th className="right hide-on-med-and-down">Actions</th>
       </tr>
     </thead>
   );

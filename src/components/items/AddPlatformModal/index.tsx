@@ -43,7 +43,7 @@ const AddPlatformModal = () => {
             <Form>
               <Field type="text" name="name" placeholder="Name" />
               <ErrorMessage name="name" component="p" />
-              <button type="submit" className="btn">
+              <button type="submit" className="btn black">
                 Add <i className="material-icons right">add</i>
               </button>
             </Form>
